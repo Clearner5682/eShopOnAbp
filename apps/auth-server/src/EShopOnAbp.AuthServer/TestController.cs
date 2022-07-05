@@ -33,7 +33,7 @@ namespace EShopOnAbp.AuthServer
             var envName = env.EnvironmentName;
             var selfUrl = configuration["App:SelfUrl"];
             var authServer = configuration["AuthServer:Authority"];
-            logger.LogInformation($"env:{envName},self_url:{selfUrl},auth_server:{authServer}");
+            logger.LogWarning($"env:{envName},self_url:{selfUrl},auth_server:{authServer}");
         }
 
         [HttpGet]
@@ -49,7 +49,7 @@ namespace EShopOnAbp.AuthServer
             ConnectionFactory connectionFactory = new ConnectionFactory();
             connectionFactory.HostName = configuration["RabbitMQ:Connections:Default:HostName"];
 
-            this.logger.LogInformation("rabbitmq:" + configuration["RabbitMQ:Connections:Default:HostName"]);
+            this.logger.LogWarning("rabbitmq:" + configuration["RabbitMQ:Connections:Default:HostName"]);
 
             IConnection connection;
             try
@@ -75,7 +75,7 @@ namespace EShopOnAbp.AuthServer
         {
             var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
 
-            this.logger.LogInformation("redis:" + configuration["Redis:Configuration"]);
+            this.logger.LogWarning("redis:" + configuration["Redis:Configuration"]);
 
             if (key.IsNullOrEmpty()||value.IsNullOrEmpty())
             {

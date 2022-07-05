@@ -28,7 +28,7 @@ namespace EShopOnAbp.AdministrationService.Controllers
         public async Task<IActionResult> Postgre()
         {
             var administrationConnectionString = this.configuration["ConnectionStrings:AdministrationService"];
-            this.logger.LogInformation($"AdministrationConnectionString:{administrationConnectionString}");
+            this.logger.LogWarning($"AdministrationConnectionString:{administrationConnectionString}");
             var permissionGrantList = await this.repository.GetListAsync();
 
             return Ok(new { PermissionGrantList = permissionGrantList.Select(o =>new {id=o.Id,name=o.Name,providername=o.ProviderName,providerkey=o.ProviderKey })});

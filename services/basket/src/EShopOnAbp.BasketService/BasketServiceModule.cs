@@ -46,6 +46,8 @@ public class BasketServiceModule : AbpModule
         ConfigureAuthentication(context, configuration);
         ConfigureSwagger(context, configuration);
         ConfigureAutoApiControllers();
+
+        context.Services.AddHostedService<TestHostedService>();
     }
 
     private void ConfigureAspNetCoreRouting()
