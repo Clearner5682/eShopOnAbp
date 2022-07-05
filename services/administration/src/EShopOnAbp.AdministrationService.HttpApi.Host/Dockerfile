@@ -2,6 +2,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
+EXPOSE 5000
+EXPOSE 5001
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
@@ -48,4 +50,13 @@ FROM build AS publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
+
+RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+RUN sed -i 's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
+RUN  apt-get clean
+RUN  apt-get update && apt-get install -y curl
+RUN  apt-get update && apt-get install -y iputils-ping
+
+ENV ASPNETCORE_ENVIRONMENT=Kubernetes
+
 ENTRYPOINT ["dotnet", "EShopOnAbp.AdministrationService.HttpApi.Host.dll"]
