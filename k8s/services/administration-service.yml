@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-server
+  name: administration-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth-server
+      app: administration-service
   template:
     metadata:
       labels:
-        app: auth-server
+        app: administration-service
     spec:
       containers:
-      - name: auth-server
-        image: hongyan5682/auth-server:latest
+      - name: administration-service
+        image: hongyan5682/administration-service:latest
         imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-authserver
+  name: administration-service
 spec:
   selector:
-    app: auth-server
+    app: administration-service
   type: ClusterIP
   ports:
     - port: 80
