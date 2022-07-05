@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basket-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: basket-service
+  template:
+    metadata:
+      labels:
+        app: basket-service
+    spec:
+      containers:
+      - name: basket-service
+        image: hongyan5682/basket-service:latest
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: basket-service
+spec:
+  selector:
+    app: basket-service
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80

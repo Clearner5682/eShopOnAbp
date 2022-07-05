@@ -6,10 +6,12 @@ namespace EShopOnAbp.BasketService
 {
     public class TestHostedService : BackgroundService
     {
+        private readonly IConfiguration configuration;
         private readonly ILogger<TestHostedService> logger;
 
-        public TestHostedService(ILogger<TestHostedService> logger)
+        public TestHostedService(IConfiguration configuration, ILogger<TestHostedService> logger)
         {
+            this.configuration = configuration;
             this.logger = logger;
         }
 
@@ -17,6 +19,7 @@ namespace EShopOnAbp.BasketService
         {
             string queueName = "TestQueue";
             ConnectionFactory connectionFactory = new ConnectionFactory();
+            connectionFactory.HostName = this.configuration["RabbitMQ:Connections:Default:HostName"];
             IConnection connection;
             try
             {

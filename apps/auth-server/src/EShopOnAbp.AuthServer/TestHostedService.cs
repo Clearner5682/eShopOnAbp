@@ -6,15 +6,18 @@ using System;
 using RabbitMQ.Client.Events;
 using Microsoft.Extensions.Logging;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace EShopOnAbp.AuthServer
 {
     public class TestHostedService : BackgroundService
     {
+        private readonly IConfiguration configuration;
         private readonly ILogger<TestHostedService> logger;
 
-        public TestHostedService(ILogger<TestHostedService> logger)
+        public TestHostedService(IConfiguration configuration, ILogger<TestHostedService> logger)
         {
+            this.configuration = configuration;
             this.logger = logger;
         }
 
@@ -22,6 +25,7 @@ namespace EShopOnAbp.AuthServer
         {
             string queueName = "TestQueue";
             ConnectionFactory connectionFactory = new ConnectionFactory();
+            connectionFactory.HostName = configuration["RabbitMQ:Connections:Default:HostName"];
             IConnection connection;
             try
             {
