@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ordering-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ordering-service
+  template:
+    metadata:
+      labels:
+        app: ordering-service
+    spec:
+      containers:
+      - name: ordering-service
+        image: hongyan5682/ordering-service:latest
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ordering-service
+spec:
+  selector:
+    app: ordering-service
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      
+    
