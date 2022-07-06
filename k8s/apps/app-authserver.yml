@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-server
+  name: app-authserver
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth-server
+      app: app-authserver
   template:
     metadata:
       labels:
-        app: auth-server
+        app: app-authserver
     spec:
       containers:
-      - name: auth-server
-        image: hongyan5682/auth-server:latest
+      - name: app-authserver
+        image: hongyan5682/app-authserver:latest
         imagePullPolicy: Always
 ---
 apiVersion: v1
@@ -23,7 +23,7 @@ metadata:
   name: app-authserver
 spec:
   selector:
-    app: auth-server
+    app: app-authserver
   type: ClusterIP
   ports:
     - port: 80
