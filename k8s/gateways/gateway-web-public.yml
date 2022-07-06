@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-web-public
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway-web-public
+  template:
+    metadata:
+      labels:
+        app: gateway-web-public
+    spec:
+      containers:
+      - name: gateway-web-public
+        image: hongyan5682/gateway-web-public:latest
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-web-public
+spec:
+  selector:
+    app: gateway-web-public
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 32000
