@@ -51,7 +51,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
 
-RUN echo 'Acquire::http::Proxy "http://10.1.3.190:5783/";' > /etc/apt/apt.conf
+#RUN echo 'Acquire::http::Proxy "http://10.1.3.190:5783/";' > /etc/apt/apt.conf
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 RUN sed -i 's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
 RUN  apt-get clean
