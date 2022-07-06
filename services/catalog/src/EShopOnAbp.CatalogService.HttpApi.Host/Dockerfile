@@ -62,4 +62,4 @@ RUN  apt-get update && apt-get install -y iputils-ping
 ENV ASPNETCORE_ENVIRONMENT=Kubernetes
 
 
-ENTRYPOINT ["dotnet", "EShopOnAbp.CatalogService.HttpApi.Host.dll","--urls","http://*:5000"]
+ENTRYPOINT ["dotnet", "EShopOnAbp.CatalogService.HttpApi.Host.dll"]
