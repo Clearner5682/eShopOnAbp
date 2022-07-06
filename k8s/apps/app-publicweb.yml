@@ -12,6 +12,8 @@ spec:
       labels:
         app: app-publicweb
     spec:
+      #assigned to master node
+      nodeName: dgtestlinux02v
       containers:
       - name: app-publicweb
         image: hongyan5682/app-publicweb:latest
@@ -24,7 +26,8 @@ metadata:
 spec:
   selector:
     app: app-publicweb
-  type: ClusterIP
+  type: NodePort
   ports:
     - port: 80
       targetPort: 80
+      nodePort: 31001

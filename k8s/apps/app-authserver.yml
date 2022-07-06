@@ -12,6 +12,8 @@ spec:
       labels:
         app: app-authserver
     spec:
+      #assigned to master node
+      nodeName: dgtestlinux02v
       containers:
       - name: app-authserver
         image: hongyan5682/app-authserver:latest
@@ -24,7 +26,8 @@ metadata:
 spec:
   selector:
     app: app-authserver
-  type: ClusterIP
+  type: NodePort
   ports:
     - port: 80
       targetPort: 80
+      nodePort: 31000

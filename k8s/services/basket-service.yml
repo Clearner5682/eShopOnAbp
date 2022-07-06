@@ -12,6 +12,8 @@ spec:
       labels:
         app: basket-service
     spec:
+      #assigned to master node
+      nodeName: dgtestlinux02v
       containers:
       - name: basket-service
         image: hongyan5682/basket-service:latest

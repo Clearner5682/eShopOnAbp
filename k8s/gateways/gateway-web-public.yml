@@ -12,6 +12,8 @@ spec:
       labels:
         app: gateway-web-public
     spec:
+      #assigned to master node
+      nodeName: dgtestlinux02v
       containers:
       - name: gateway-web-public
         image: hongyan5682/gateway-web-public:latest
@@ -28,4 +30,4 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 32000
+      nodePort: 31003

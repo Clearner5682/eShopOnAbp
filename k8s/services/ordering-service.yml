@@ -12,6 +12,8 @@ spec:
       labels:
         app: ordering-service
     spec:
+      #assigned to master node
+      nodeName: dgtestlinux02v
       containers:
       - name: ordering-service
         image: hongyan5682/ordering-service:latest

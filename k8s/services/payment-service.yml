@@ -12,6 +12,8 @@ spec:
       labels:
         app: payment-service
     spec:
+      #assigned to master node
+      nodeName: dgtestlinux02v
       containers:
       - name: payment-service
         image: hongyan5682/payment-service:latest

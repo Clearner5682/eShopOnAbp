@@ -12,6 +12,8 @@ spec:
       labels:
         app: administration-service
     spec:
+      #assigned to master node
+      nodeName: dgtestlinux02v
       containers:
       - name: administration-service
         image: hongyan5682/administration-service:latest

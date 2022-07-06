@@ -12,6 +12,8 @@ spec:
       labels:
         app: identity-service
     spec:
+      #assigned to master node
+      nodeName: dgtestlinux02v
       containers:
       - name: identity-service
         image: hongyan5682/identity-service:latest
